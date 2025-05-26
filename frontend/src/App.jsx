@@ -243,6 +243,8 @@ export default function App() {
   const currentTheme = themes[selectedTheme];
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+// In App.jsx
+console.log("App.jsx updated");
 
   
   const downloadPDF = async () => {
