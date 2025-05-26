@@ -241,6 +241,9 @@ export default function App() {
 
   const [selectedTheme, setSelectedTheme] = useState("classicBlue");
   const currentTheme = themes[selectedTheme];
+
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   
   const downloadPDF = async () => {
   const preview = document.getElementById('resume-preview');
@@ -280,7 +283,7 @@ export default function App() {
 
 
   try {
-    const response = await fetch('http://localhost:3001/generate-pdf', {
+    const response = await fetch(`${backendUrl}/generate-pdf`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
