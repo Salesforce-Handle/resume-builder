@@ -1,0 +1,7 @@
+node_modules/
+puppeteer/
+npm-debug.log*
+.env
+dist/
+build/
+.DS_Store
