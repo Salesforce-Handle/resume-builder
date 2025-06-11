@@ -393,17 +393,16 @@ export default function App() {
           href="https://salesforcehandle.com/salesforce-resume-generator/"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3 py-1.5 bg-blue-100 text-blue-700 text-sm rounded hover:bg-blue-200 transition"
-        >
-          💬 Kind Word
+          className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400"        >
+          Feedbacks?
         </a>
+         
         <a
           href="https://buymeacoffee.com/sforcehandle"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3 py-1.5 bg-pink-100 text-pink-700 text-sm rounded hover:bg-pink-200 transition"
-        >
-          ☕ Support
+          className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400"        >
+          Buy Me A Coffee
         </a>
 
         {/* PDF Button */}
