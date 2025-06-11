@@ -16,7 +16,7 @@ export default function WelcomePopup() {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-30 flex items-center justify-center px-4">
+    <div className="fixed inset-0 z-50 bg-white/40 backdrop-blur-[2px] flex items-center justify-center px-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative animate-fade-in">
         <button
           onClick={handleClose}
@@ -31,8 +31,8 @@ export default function WelcomePopup() {
         </p>
 
         <ul className="text-sm text-gray-600 list-disc list-inside space-y-1 mb-4">
-          <li>💬 Leave a kind word on our <a href="/blog" className="text-blue-500 underline">blog</a></li>
-          <li>☕ <a href="https://buymeacoffee.com/yourname" target="_blank" className="text-pink-600 underline">Buy me a coffee</a></li>
+          <li>💬 Leave a kind word on our <a href="https://salesforcehandle.com/salesforce-resume-generator/" className="text-blue-500 underline">blog</a></li>
+          <li>☕ <a href="https://buymeacoffee.com/sforcehandle" target="_blank" className="text-pink-600 underline">Buy me a coffee</a></li>
         </ul>
 
         <p className="text-xs text-gray-400">

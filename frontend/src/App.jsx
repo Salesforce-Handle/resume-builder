@@ -813,6 +813,12 @@ export default function App() {
       </div>
       </div>
    </div>
+
+    <ul className="text-sm text-gray-600 list-disc list-inside space-y-1 mb-4">
+    <li>💬 Leave a kind word on our <a href="https://salesforcehandle.com/salesforce-resume-generator/" className="text-blue-500 underline">blog</a></li>
+    <li>☕ <a href="https://buymeacoffee.com/sforcehandle" target="_blank" className="text-pink-600 underline">Buy me a coffee</a></li>
+    </ul>
+
     </div>
   </>
   );
