@@ -387,23 +387,21 @@ export default function App() {
         fields={["title", "location", "email", "phone", "linkedin"]}
       />
 
-      {/* Support Buttons */}
-      <div className="flex gap-2">
+      {/* Support Buttons */}         
         <a
-          href="https://salesforcehandle.com/salesforce-resume-generator/"
+          href="https://www.buymeacoffee.com/sforcehandle"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400"        >
-          Feedbacks?
+          className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#FFDD00] text-black font-semibold text-sm rounded-md shadow hover:brightness-105 transition"
+        >
+          <img
+            src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
+            alt="Buy me a coffee"
+            className="w-5 h-5"
+          />
+          Buy me a coffee
         </a>
-         
-        <a
-          href="https://buymeacoffee.com/sforcehandle"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400"        >
-          Buy Me A Coffee
-        </a>
+
 
         {/* PDF Button */}
         <button
