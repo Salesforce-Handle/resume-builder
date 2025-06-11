@@ -1,7 +1,18 @@
+# Node modules
 node_modules/
-puppeteer/
+
+# Logs
 npm-debug.log*
-.env
+yarn-debug.log*
+yarn-error.log*
+
+# Puppeteer cache
+puppeteer/
+
+# Build artifacts (optional)
 dist/
 build/
+
+# OS/System files
 .DS_Store
+.env
