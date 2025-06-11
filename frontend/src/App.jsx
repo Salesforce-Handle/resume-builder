@@ -387,7 +387,8 @@ export default function App() {
         fields={["title", "location", "email", "phone", "linkedin"]}
       />
 
-      {/* Support Buttons */}         
+      {/* Support Buttons */}
+      <div className="flex gap-2">
         <a
           href="https://www.buymeacoffee.com/sforcehandle"
           target="_blank"
