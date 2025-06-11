@@ -241,11 +241,8 @@ export default function App() {
 
   const [selectedTheme, setSelectedTheme] = useState("classicBlue");
   const currentTheme = themes[selectedTheme];
-
+  const [isGenerating, setIsGenerating] = useState(false);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-// In App.jsx
-console.log("App.jsx updated"+backendUrl);
-
   
   const downloadPDF = async () => {
   const preview = document.getElementById('resume-preview');
@@ -285,6 +282,7 @@ console.log("App.jsx updated"+backendUrl);
 
 
   try {
+    setIsGenerating(true); // 🟢 Show loader
     const response = await fetch(`${backendUrl}/generate-pdf`, {
       method: 'POST',
       headers: {
@@ -303,10 +301,21 @@ console.log("App.jsx updated"+backendUrl);
     link.click();
   } catch (err) {
     console.error('PDF download failed:', err);
+  } finally {
+    setIsGenerating(false); // 🔴 Hide loader
   }
 };
   
   return (
+  <>
+    {isGenerating && (
+  <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+    <div className="flex flex-col items-center space-y-4">
+      <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+      <p className="text-white text-sm font-semibold">Preparing your resume…</p>
+    </div>
+  </div>
+)}
 
   <div className="min-h-screen p-6 lg:p-12 font-[Inter] bg-gradient-to-br from-gray-50 to-white">
 
@@ -772,5 +781,6 @@ console.log("App.jsx updated"+backendUrl);
       </div>
    </div>
     </div>
+  </>
   );
 }
