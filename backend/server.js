@@ -5,12 +5,21 @@ import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 3001;  
 
-const allowedOrigin =  'http://localhost:5173' || 'https://www.resume.salesforcehandle.com';
-
+const allowedOrigins = [
+  'https://resume.salesforcehandle.com',
+  'https://www.resume.salesforcehandle.com'
+];
 
 app.use(cors({
-  origin: allowedOrigin,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }));
+
 
 
 app.use(express.json({ limit: '10mb' })); // in case HTML is large
