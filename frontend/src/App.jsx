@@ -308,14 +308,15 @@ export default function App() {
   
   return (
   <>
-    {isGenerating && (
-  <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-    <div className="flex flex-col items-center space-y-4">
-      <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-      <p className="text-white text-sm font-semibold">Preparing your resume…</p>
+  {isGenerating && (
+    <div className="fixed inset-0 bg-white/50 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
+      <div className="flex flex-col items-center space-y-4">
+        <div className="w-8 h-8 border-4 border-t-transparent border-gray-400 rounded-full animate-spin"></div>
+        <p className="text-gray-700 text-sm font-medium">Crafting your resume…</p>
+      </div>
     </div>
-  </div>
-)}
+  )}
+
 
   <div className="min-h-screen p-6 lg:p-12 font-[Inter] bg-gradient-to-br from-gray-50 to-white">
 
