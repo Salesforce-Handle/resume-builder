@@ -352,9 +352,10 @@ export default function App() {
 
   <div className="min-h-screen p-6 lg:p-12 font-[Inter] bg-gradient-to-br from-gray-50 to-white">
 
-    {/* Top panel here */}
-      <div className="mb-6 flex justify-between items-center">
-        <div className="flex gap-4 items-center bg-white border border-gray-200 shadow-md rounded-md px-3 py-2 text-sm">
+   {/* Top panel here */}
+    <div className="mb-6 flex flex-wrap gap-4 justify-between items-center">
+      {/* Theme Picker */}
+      <div className="flex gap-4 items-center bg-white border border-gray-200 shadow-md rounded-md px-3 py-2 text-sm">
         <label className="font-semibold">Pick a Theme</label>
         <select
           value={selectedTheme}
@@ -364,14 +365,14 @@ export default function App() {
           {Object.keys(themes).map((themeKey) => (
             <option key={themeKey} value={themeKey}>
               {themeKey
-                .replace(/([A-Z])/g, ' $1')    // Add space before capital letters
-                .replace(/^./, str => str.toUpperCase())}  {/* Capitalize first letter */}
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, str => str.toUpperCase())}
             </option>
           ))}
         </select>
       </div>
-      
-      {/* Visibility Toggle Menu (Now always visible and horizontal) */}
+
+      {/* Visibility Toggle */}
       <VisibilityToggleMenu
         visibility={formData.visibility}
         onToggle={(field) =>
@@ -386,10 +387,34 @@ export default function App() {
         fields={["title", "location", "email", "phone", "linkedin"]}
       />
 
-      <button  onClick={downloadPDF}  className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400"
-      >📄 Download PDF</button>
-    
+      {/* Support Buttons */}
+      <div className="flex gap-2">
+        <a
+          href="https://salesforcehandle.com/salesforce-resume-generator/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3 py-1.5 bg-blue-100 text-blue-700 text-sm rounded hover:bg-blue-200 transition"
+        >
+          💬 Kind Word
+        </a>
+        <a
+          href="https://buymeacoffee.com/sforcehandle"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3 py-1.5 bg-pink-100 text-pink-700 text-sm rounded hover:bg-pink-200 transition"
+        >
+          ☕ Support
+        </a>
+
+        {/* PDF Button */}
+        <button
+          onClick={downloadPDF}
+          className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          📄 Download PDF
+        </button>
       </div>
+    </div>
 
    {/* Resume container starts here */}
 
@@ -813,27 +838,6 @@ export default function App() {
       </div>
       </div>
    </div>
-
-    <div className="flex flex-col sm:flex-row gap-3 mb-4">
-    <a
-      href="https://salesforcehandle.com/salesforce-resume-generator/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center justify-center px-4 py-2 bg-blue-100 text-blue-700 font-medium rounded hover:bg-blue-200 transition"
-    >
-      💬 Leave a kind word
-    </a>
-
-    <a
-      href="https://buymeacoffee.com/sforcehandle"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center justify-center px-4 py-2 bg-pink-100 text-pink-700 font-medium rounded hover:bg-pink-200 transition"
-    >
-      ☕ Buy me a coffee
-    </a>
-    </div>
-
     </div>
   </>
   );
