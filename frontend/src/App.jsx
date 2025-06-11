@@ -1,5 +1,6 @@
 // React Resume Builder with Editable Dynamic Fields and Modern UI Layout
 import React, { useState } from "react";     
+import WelcomePopup from "./components/WelcomePopup";
 import { Briefcase, MapPin, Mail, Phone, Linkedin, Eye, EyeOff, Trophy, Award, Gem, Star, Sparkles } from "lucide-react";
 import EditableDateRange from "./components/EditableDateRange";
 import EditableField from "./components/EditableField";
@@ -318,15 +319,16 @@ export default function App() {
     link.href = url;
     link.download = 'resume.pdf';
     link.click();
-  } catch (err) {
-    console.error('PDF download failed:', err);
-  } finally {
-    setIsGenerating(false); // 🔴 Hide loader
-  }
-};
+    } catch (err) {
+      console.error('PDF download failed:', err);
+    } finally {
+      setIsGenerating(false); // 🔴 Hide loader
+    }
+  };
   
   return (
   <>
+  <WelcomePopup/>
   {isGenerating && (
     <div className="fixed inset-0 bg-white/40 backdrop-blur-[2px] flex items-center justify-center z-50">
       <div className="flex flex-col items-center space-y-4 fade-in">
