@@ -814,10 +814,25 @@ export default function App() {
       </div>
    </div>
 
-    <ul className="text-sm text-gray-600 list-disc list-inside space-y-1 mb-4">
-    <li>💬 Leave a kind word on our <a href="https://salesforcehandle.com/salesforce-resume-generator/" className="text-blue-500 underline">blog</a></li>
-    <li>☕ <a href="https://buymeacoffee.com/sforcehandle" target="_blank" className="text-pink-600 underline">Buy me a coffee</a></li>
-    </ul>
+    <div className="flex flex-col sm:flex-row gap-3 mb-4">
+    <a
+      href="https://salesforcehandle.com/salesforce-resume-generator/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center justify-center px-4 py-2 bg-blue-100 text-blue-700 font-medium rounded hover:bg-blue-200 transition"
+    >
+      💬 Leave a kind word
+    </a>
+
+    <a
+      href="https://buymeacoffee.com/sforcehandle"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center justify-center px-4 py-2 bg-pink-100 text-pink-700 font-medium rounded hover:bg-pink-200 transition"
+    >
+      ☕ Buy me a coffee
+    </a>
+    </div>
 
     </div>
   </>
