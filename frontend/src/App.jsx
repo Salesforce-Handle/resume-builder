@@ -244,7 +244,7 @@ export default function App() {
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 // In App.jsx
-console.log("App.jsx updated");
+console.log("App.jsx updated"+backendUrl);
 
   
   const downloadPDF = async () => {
