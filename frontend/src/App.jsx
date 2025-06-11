@@ -242,6 +242,23 @@ export default function App() {
   const [selectedTheme, setSelectedTheme] = useState("classicBlue");
   const currentTheme = themes[selectedTheme];
   const [isGenerating, setIsGenerating] = useState(false);
+
+    const motivationalQuotes = [
+    "You’re ready.",
+    "Time to shine.",
+    "Your story matters.",
+    "Stand out. Speak loud.",
+    "Next stop: success.",
+    "They’ll remember this.",
+    "Future. Loaded.",
+    "Built to impress.",
+    "One page. Big leap.",
+    "Let’s get you hired.",
+    "Game face: on."
+  ];
+
+  const [quote, setQuote] = useState("");
+
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   
   const downloadPDF = async () => {
@@ -254,34 +271,36 @@ export default function App() {
   const eyeMenus = clonedPreview.querySelectorAll(".no-print");
   eyeMenus.forEach((el) => el.remove());
 
- const fullHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Resume</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-   
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      padding-bottom: 20mm;
-    }
-    #resume-preview {
-      box-sizing: border-box;
-    }
+  const fullHtml = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resume</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 20mm;
+      }
+      #resume-preview {
+        box-sizing: border-box;
+      }
 
-  </style>
-</head>
-<body>
-  ${clonedPreview.outerHTML}
-</body>
-</html>`;
-
+    </style>
+  </head>
+  <body>
+    ${clonedPreview.outerHTML}
+  </body>
+  </html>`;
 
   try {
+      // Show a random quote before starting
+    const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+    setQuote(randomQuote);
     setIsGenerating(true); // 🟢 Show loader
     const response = await fetch(`${backendUrl}/generate-pdf`, {
       method: 'POST',
@@ -313,7 +332,7 @@ export default function App() {
       <div className="flex flex-col items-center space-y-4 fade-in">
         {/* Bouncing Dots */}
         <div className="flex space-x-2">
-          {["🟣", "🟢", "🟡"].map((emoji, i) => (
+          {["😊", "😄", "🥳"].map((emoji, i) => (
             <span
               key={i}
               className="text-2xl animate-bounce"
@@ -323,7 +342,8 @@ export default function App() {
             </span>
           ))}
         </div>
-        <p className="text-gray-600 text-sm font-medium">Crafting your resume…</p>
+        {/* Rotating motivational quote */}
+      <p className="text-gray-800 text-sm font-semibold italic">{quote}</p>
       </div>
     </div>
   )}
