@@ -5,8 +5,8 @@ import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 3001;  
 
-const allowedOrigin =  'http://localhost:5173' || 'https://www.resume.salesforcehandle.com';
-
+const allowedOrigin =  'https://www.resume.salesforcehandle.com';
+//'http://localhost:5173' || 
 
 app.use(cors({
   origin: allowedOrigin,
