@@ -309,14 +309,24 @@ export default function App() {
   return (
   <>
   {isGenerating && (
-    <div className="fixed inset-0 bg-white/50 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
-      <div className="flex flex-col items-center space-y-4">
-        <div className="w-8 h-8 border-4 border-t-transparent border-gray-400 rounded-full animate-spin"></div>
-        <p className="text-gray-700 text-sm font-medium">Crafting your resume…</p>
+    <div className="fixed inset-0 bg-white/40 backdrop-blur-[2px] flex items-center justify-center z-50">
+      <div className="flex flex-col items-center space-y-4 fade-in">
+        {/* Bouncing Dots */}
+        <div className="flex space-x-2">
+          {["🟣", "🟢", "🟡"].map((emoji, i) => (
+            <span
+              key={i}
+              className="text-2xl animate-bounce"
+              style={{ animationDelay: `${i * 0.2}s` }}
+            >
+              {emoji}
+            </span>
+          ))}
+        </div>
+        <p className="text-gray-600 text-sm font-medium">Crafting your resume…</p>
       </div>
     </div>
   )}
-
 
   <div className="min-h-screen p-6 lg:p-12 font-[Inter] bg-gradient-to-br from-gray-50 to-white">
 
