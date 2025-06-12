@@ -30,14 +30,14 @@ export default function WelcomePopup() {
 
         <h2 className="text-xl text-center font-semibold mb-2 text-blue-700">👋 Welcome!</h2>
 
-        <p className="text-sm text-center  text-gray-700 mb-2">
+        <p className="text-sm text-center text-gray-700 mb-2">
           <strong>Built with </strong>❤️ by a Salesforce dev who's reviewed 100+ resumes.
         </p>
 
         <div className="text-sm text-gray-600 mb-2">
           <p className="mb-1">🔒 <strong>No data is ever sent to a server.</strong></p>
-          <p>Everything is stored locally in your browser unless you clear cache. Pause anytime and come back — your progress stays safe on your device.
-        </p>
+          <p>Everything is stored locally in your browser unless you clear cache. Pause anytime and come back — your progress stays safe on your device.</p>
+        </div>
 
         <p className="text-xs text-gray-400 mt-3">
           We hope this helps you land your next big opportunity 🚀
