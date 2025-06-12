@@ -9,6 +9,7 @@ import SectionControls from "./components/SectionControls";
 import VisibilityToggleMenu from "./components/VisibilityToggleMenu";
 import '@fontsource/inter/index.css';
 import './index.css';
+import { useResumeStorage } from "./components/hooks/useResumeStorage";
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -199,6 +200,16 @@ export default function App() {
     });
   };
   
+  useResumeStorage({
+  formData, setFormData,
+  workExperiences, setWorkExperiences,
+  educations, setEducations,
+  skills, setSkills,
+  certifications, setCertifications,
+  languages, setLanguages,
+  strengths, setStrengths
+  });
+
   const themes = {
     classicBlue: {
       header: "text-blue-700",
