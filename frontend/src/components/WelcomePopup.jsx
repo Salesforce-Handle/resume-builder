@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 export default function WelcomePopup() {
   const [show, setShow] = useState(false);
+  const [doNotShow, setDoNotShow] = useState(false);
 
   useEffect(() => {
     const dismissed = localStorage.getItem("resumePopupDismissed");
@@ -9,8 +10,10 @@ export default function WelcomePopup() {
   }, []);
 
   const handleClose = () => {
+    if (doNotShow) {
+      localStorage.setItem("resumePopupDismissed", "true");
+    }
     setShow(false);
-    localStorage.setItem("resumePopupDismissed", "true");
   };
 
   if (!show) return null;
@@ -28,19 +31,33 @@ export default function WelcomePopup() {
         <h2 className="text-xl font-semibold mb-2 text-blue-700">👋 Welcome!</h2>
 
         <p className="text-sm text-gray-700 mb-2">
-          💬 <strong>Built with love</strong> by a Salesforce dev who's reviewed 100+ resumes.
+          <strong>Built with </strong>❤️ by a Salesforce dev who's reviewed 100+ resumes.
         </p>
 
         <div className="text-sm text-gray-600 mb-2">
           <p className="mb-1">🔒 <strong>No data is ever sent to a server.</strong></p>
-          <p>💾 Everything is stored locally in your browser unless you clear cache.</p>
+          <p>Everything is stored locally in your browser unless you clear cache.</p>
         </div>
 
         <p className="text-sm text-gray-700 mt-3">
           Pause anytime and come back — your progress stays safe on your device.
         </p>
 
-        <p className="text-xs text-gray-400 mt-3">Thanks for visiting — we hope this helps you land your next big opportunity 🚀</p>
+        <p className="text-xs text-gray-400 mt-3">
+          We hope this helps you land your next big opportunity 🚀
+        </p>
+
+        {/* Do not show again checkbox */}
+        <div className="mt-4 flex items-center text-sm">
+          <input
+            type="checkbox"
+            id="doNotShow"
+            className="mr-2 accent-blue-600"
+            checked={doNotShow}
+            onChange={(e) => setDoNotShow(e.target.checked)}
+          />
+          <label htmlFor="doNotShow" className="text-gray-600">Do not show again</label>
+        </div>
       </div>
     </div>
   );
