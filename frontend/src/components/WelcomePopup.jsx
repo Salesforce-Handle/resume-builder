@@ -28,9 +28,9 @@ export default function WelcomePopup() {
           ×
         </button>
 
-        <h2 className="text-xl text-center font-semibold mb-2 text-blue-700">👋 Welcome!</h2>
+        <h2 className="text-xl font-semibold mb-2 text-blue-700">👋 Welcome!</h2>
 
-        <p className="text-sm text-center text-gray-700 mb-2">
+        <p className="text-sm text-gray-700 mb-2">
           <strong>Built with </strong>❤️ by a Salesforce dev who's reviewed 100+ resumes.
         </p>
 
