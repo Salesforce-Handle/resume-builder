@@ -18,18 +18,27 @@ export function useResumeStorage({
   setStrengths,
 }) {
   // Load from localStorage once on mount
-  useEffect(() => {
-    const saved = (key) => JSON.parse(localStorage.getItem(key) || "null");
-    const trySet = (val, setter) => val && setter(val);
+useEffect(() => {
+  const saved = (key) => JSON.parse(localStorage.getItem(key) || "null");
+  const trySet = (val, setter) => val && setter(val);
 
-    trySet(saved("resumeFormData"), setFormData);
-    trySet(saved("resumeWork"), setWorkExperiences);
-    trySet(saved("resumeEdu"), setEducations);
-    trySet(saved("resumeSkills"), setSkills);
-    trySet(saved("resumeCerts"), setCertifications);
-    trySet(saved("resumeLangs"), setLanguages);
-    trySet(saved("resumeStrengths"), setStrengths);
-  }, []);
+  trySet(saved("resumeFormData"), setFormData);
+  trySet(saved("resumeWork"), setWorkExperiences);
+  trySet(saved("resumeEdu"), setEducations);
+  trySet(saved("resumeSkills"), setSkills);
+  trySet(saved("resumeCerts"), setCertifications);
+  trySet(saved("resumeLangs"), setLanguages);
+  trySet(saved("resumeStrengths"), setStrengths);
+}, [
+  setFormData,
+  setWorkExperiences,
+  setEducations,
+  setSkills,
+  setCertifications,
+  setLanguages,
+  setStrengths
+]);
+
 
   // Save to localStorage on any change
   useEffect(() => {
