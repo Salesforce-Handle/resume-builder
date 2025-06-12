@@ -35,7 +35,7 @@ export default function WelcomePopup() {
         </p>
 
         <div className="text-sm text-gray-600 mb-2">
-          <p className="mb-1">🔒 <strong>No data is ever sent to a server.</strong></p>
+          <p className="mb-1 text-center">🔒 <strong>No data is ever sent to a server.</strong></p>
           <p>Everything is stored locally in your browser unless you clear cache.</p>
         </div>
 
