@@ -20,7 +20,7 @@ export default function WelcomePopup() {
 
   return (
     <div className="fixed inset-0 z-50 bg-white/40 backdrop-blur-[2px] flex items-center justify-center px-4">
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-xl max-w-md w-full p-6 relative animate-fade-in">
+      <div className="bg-white border border-gray-200 rounded-2xl shadow-xl max-w-md w-full p-7 relative animate-fade-in">
         <button
           onClick={handleClose}
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl"
@@ -35,7 +35,7 @@ export default function WelcomePopup() {
         </p>
 
         <div className="text-sm text-gray-600 mb-2">
-          <p className="mb-1 text-center">🔒 <strong>No data is ever sent to a server.</strong></p>
+          <p className="mb-1">🔒 <strong>No data is ever sent to a server.</strong></p>
           <p>Everything is stored locally in your browser unless you clear cache.</p>
         </div>
 
