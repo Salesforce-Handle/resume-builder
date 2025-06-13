@@ -10,6 +10,7 @@ import VisibilityToggleMenu from "./components/VisibilityToggleMenu";
 import '@fontsource/inter/index.css';
 import './index.css';
 import { useResumeStorage } from "./components/hooks/useResumeStorage";
+import SummarySection from "./sections/SummarySection";
 import WorkExperienceSection from "./sections/WorkExperienceSection";
 import EducationSection from "./sections/EducationSection";
 
@@ -491,24 +492,19 @@ export default function App() {
       <div id="left-sections" className="col-span-5 space-y-6">
 
         {/* Summary */}
-        <div  id="sum-section"  className="mb-2 px-4">
-          <section>
-          <div  id="sum-title" >
-            <EditableField value={formData.summaryTitle}  onChange={(val) => setFormData({ ...formData, summaryTitle: val })}  
-              placeholder="Summary" className={`${currentTheme.headerBorder} ${currentTheme.headerTitles}`} />
-          </div>
-          <div  id="sum-body" className="w-full">
-            <EditableField
-              value={formData.summary}
-              onChange={(val) => setFormData({ ...formData, summary: val })}
-              placeholder="Summarize your relevant skills, experience, and achievements that align with this role."
-              className={`w-full min-h-[50px] min-w-[100px] whitespace-pre-wrap text-xs text-gray-500 ${currentTheme.body}`}
-            />
-          </div>
-          </section>
+        <div className="mb-2 px-4">
+        <SummarySection
+          summaryTitle={formData.summaryTitle}
+          setSummaryTitle={(val) => setFormData({ ...formData, summaryTitle: val })}
+          summary={formData.summary}
+          setSummary={(val) => setFormData({ ...formData, summary: val })}
+          currentTheme={currentTheme}
+        />
+
         </div>
 
         {/* Work Experience */}
+        <div className="mb-2 px-4">
         <WorkExperienceSection
           workExperiences={workExperiences}
           setWorkExperiences={setWorkExperiences}
@@ -516,8 +512,10 @@ export default function App() {
           setWorkTitle={(val) => setFormData({ ...formData, workTitle: val })}
           currentTheme={currentTheme}
         />
+        </div>
 
         {/* Education */}
+        <div className="mb-2 px-4">
         <EducationSection
           educations={educations}
           setEducations={setEducations}
@@ -525,6 +523,7 @@ export default function App() {
           setFormData={setFormData}
           currentTheme={currentTheme}
         />
+        </div>
 
       </div>
 

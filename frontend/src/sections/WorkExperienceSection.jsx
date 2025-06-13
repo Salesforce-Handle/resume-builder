@@ -41,7 +41,7 @@ export default function WorkExperienceSection({
   };
 
   return (
-      <section className="mb-2 px-4">
+      <section>
         {/* Work Title */}
         <div id="work-title">
           <EditableField
