@@ -36,7 +36,7 @@ export default function App() {
     langTittle: "Languages"
   });
 
-  const strengthIcons = [Trophy, Award, Gem, Star, Sparkles];
+  // workex
   const [workExperiences, setWorkExperiences] = useState([
     { 
       company: "",
@@ -47,18 +47,6 @@ export default function App() {
     }
   ]);
   
-  const [educations, setEducations] = useState([
-    {
-      institute: "",
-      degree: "",
-      duration: { from: "", to: "" },
-      notes: "",
-    },
-  ]);
-  
-  const [languages, setLanguages] = useState([""]);
-  const [certifications, setCertifications] = useState([""]);
-
   const handleWorkChange = (index, field, value) => {
     const newWork = [...workExperiences];
     newWork[index][field] = value;
@@ -76,6 +64,16 @@ export default function App() {
       setWorkExperiences(newWork);
     }
   };
+
+  // edu
+  const [educations, setEducations] = useState([
+    {
+      institute: "",
+      degree: "",
+      duration: { from: "", to: "" },
+      notes: "",
+    },
+  ]);
 
   const handleEducationChange = (index, field, value) => {
     const updated = [...educations];
@@ -103,6 +101,7 @@ export default function App() {
     }
   };
  
+  //skill
   const [skills, setSkills] = useState([""]);
   const [focusedIndex, setFocusedIndex] = useState(null);
   
@@ -134,7 +133,9 @@ export default function App() {
       setFocusedIndex(null);
     }
   };
-  
+
+  // certs
+  const [certifications, setCertifications] = useState([""]);
   const handleCertificationChange = (index, e) => {
     const newCerts = [...certifications];
     newCerts[index] = e.target.value;
@@ -150,6 +151,9 @@ export default function App() {
     updated.splice(index, 1);
     setCertifications(updated);
   };
+
+  // lang
+  const [languages, setLanguages] = useState([""]);
 
   const handleLanguageChange = (index, e) => {
     const newLang = [...languages];
@@ -167,12 +171,14 @@ export default function App() {
     setLanguages(updated);
   };
 
+  // strengths
+  const strengthIcons = [Trophy, Award, Gem, Star, Sparkles];
   const [strengths, setStrengths] = useState([
   { title: 'Ownership', description: '' }
   ]);
 
   const addStrength = () => setStrengths([...strengths, { title: '', description: '' }]);
-
+  
   const removeStrength = (index) =>
     setStrengths(strengths.filter((_, i) => i !== index));
 
@@ -182,6 +188,7 @@ export default function App() {
     setStrengths(updated);
   };
 
+  // item up down methods
   const moveItemUp = (index, listSetter) => {
     listSetter(prev => {
       if (index <= 0) return prev;
@@ -210,6 +217,7 @@ export default function App() {
   strengths, setStrengths
   });
 
+  // themes
   const themes = {
     classicBlue: {
       header: "text-blue-700",
@@ -250,9 +258,10 @@ export default function App() {
       body: "text-gray-900",
     },
   };
-
   const [selectedTheme, setSelectedTheme] = useState("classicBlue");
   const currentTheme = themes[selectedTheme];
+
+  // generating pdf with motivational quotes
   const [isGenerating, setIsGenerating] = useState(false);
 
     const motivationalQuotes = [
@@ -271,6 +280,7 @@ export default function App() {
 
   const [quote, setQuote] = useState("");
 
+  // pdf generation 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   
   const downloadPDF = async () => {
