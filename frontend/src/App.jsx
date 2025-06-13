@@ -2,7 +2,6 @@
 import React, { useState } from "react";     
 import WelcomePopup from "./components/WelcomePopup";
 import { Briefcase, MapPin, Mail, Phone, Linkedin, Eye, EyeOff, Trophy, Award, Gem, Star, Sparkles } from "lucide-react";
-import EditableDateRange from "./components/EditableDateRange";
 import EditableField from "./components/EditableField";
 import EditableTag from "./components/EditableTag";
 import SectionControls from "./components/SectionControls";

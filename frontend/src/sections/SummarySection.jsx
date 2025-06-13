@@ -1,6 +1,5 @@
 import React from "react";
 import EditableField from "../components/EditableField";
-import "../index.css"; // goes up from src/sections/ to src/
 
 export default function SummarySection({
   summaryTitle,

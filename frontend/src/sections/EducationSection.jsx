@@ -3,8 +3,6 @@ import EditableField from "../components/EditableField";
 import EditableDateRange from "../components/EditableDateRange";
 import SectionControls from "../components/SectionControls";
 import { useReorderList } from "../components/hooks/useReorderList";
-import "../index.css"; // goes up from src/sections/ to src/
-
 
 export default function EducationSection({
   educations,

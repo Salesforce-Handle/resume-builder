@@ -5,25 +5,22 @@
     font-size: 15px;
     line-height: 18px;
   }
-}
 
-@layer utilities {
   .text-xs {
     font-size: 13px;
     line-height: 16px;
   }
-}
 
-@layer utilities {
   .text-x2s {
     font-size: 12px;
     line-height: 15px;
   }
-}
 
 /* Fade-in entry */
 .fade-in {
   animation: fadeIn 0.3s ease-in-out;
+}
+
 }
 
 @keyframes fadeIn {
