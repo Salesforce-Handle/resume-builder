@@ -11,6 +11,8 @@ import '@fontsource/inter/index.css';
 import './index.css';
 import { useResumeStorage } from "./components/hooks/useResumeStorage";
 import WorkExperienceSection from "./components/WorkExperienceSection";
+import EducationSection from "./components/EducationSection";
+
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -57,32 +59,6 @@ export default function App() {
       notes: "",
     },
   ]);
-
-  const handleEducationChange = (index, field, value) => {
-    const updated = [...educations];
-    updated[index][field] = value;
-    setEducations(updated);
-  };
-
-  const addEducation = () => {
-    setEducations([
-      ...educations,
-      {
-        institute: "",
-        degree: "",
-        duration: { from: "", to: "" },
-        notes: "",
-      },
-    ]);
-  };
-
-  const removeEducation = (index) => {
-    if (educations.length > 1) {
-      const updated = [...educations];
-      updated.splice(index, 1);
-      setEducations(updated);
-    }
-  };
  
   //skill
   const [skills, setSkills] = useState([""]);
@@ -511,8 +487,8 @@ export default function App() {
         </div>
 
         <div className=" grid grid-cols-8 gap-4">        
-        {/* Left Column */}
-        <div id="left-sections" className="col-span-5 space-y-6">
+      {/* Left Column */}
+      <div id="left-sections" className="col-span-5 space-y-6">
 
         {/* Summary */}
         <div  id="sum-section"  className="mb-2 px-4">
@@ -542,66 +518,15 @@ export default function App() {
         />
 
         {/* Education */}
-        <div  id="edu-section"  className="mb-2 px-4">
-          <section>
+        <EducationSection
+          educations={educations}
+          setEducations={setEducations}
+          formData={formData}
+          setFormData={setFormData}
+          currentTheme={currentTheme}
+        />
 
-          <div id="Edu-title">
-            <EditableField
-              value={formData.EduTitle}
-              onChange={(val) => setFormData({ ...formData, EduTitle: val })}
-              placeholder="Education"
-              className={`${currentTheme.headerBorder} ${currentTheme.headerTitles}`}
-            />
-          </div>
-
-          {educations.map((edu, index) => (
-            
-            <div key={index} id={`edu-${index}`} className={`relative group rounded hover:shadow hover:border-2 hover:border-blue-200 transition-all mb-4 ${
-              index !== educations.length - 1 ? 'pb-1 border-b border-dashed border-gray-300' : ''
-              }`}>
-              
-              <SectionControls
-                index={index}
-                total={educations.length}
-                onAdd={addEducation}
-                className={'absolute -top-10 right-10'} 
-                onRemove={removeEducation}
-                onMoveUp={(i) => moveItemUp(i, setEducations)}
-                onMoveDown={(i) => moveItemDown(i, setEducations)}
-              />
-
-              <EditableField
-                value={edu.degree}
-                onChange={(val) => handleEducationChange(index, 'degree', val)}
-                placeholder="Degree"
-                className={`text-sm2 ${currentTheme.body}`}
-              />
-
-              <EditableField
-                value={edu.institute}
-                onChange={(val) => handleEducationChange(index, 'institute', val)}
-                placeholder="Institute Name"
-                className={`text-xs text-gray-600 ${currentTheme.body}`}
-              />
-
-              <EditableDateRange
-                value={edu.duration}
-                onChange={(val) => handleEducationChange(index, 'duration', val)}
-                className={`text-x2s ${currentTheme.body}`}
-                mode="year"
-              />
-
-              <EditableField
-                value={edu.notes}
-                onChange={(val) => handleEducationChange(index, 'notes', val)}
-                placeholder="Additional Highlights "
-                className={`text-xs text-gray-500 italic ${currentTheme.body}`}
-              />
-            </div>
-          ))}
-             </section>
-          </div>
-        </div>
+      </div>
 
         {/* Right Column */}
         <div id="right-sections" className="col-span-3 space-y-6">

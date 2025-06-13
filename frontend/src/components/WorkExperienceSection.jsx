@@ -2,6 +2,7 @@ import React from "react";
 import EditableField from "./EditableField";
 import EditableDateRange from "./EditableDateRange";
 import SectionControls from "./SectionControls";
+import { useReorderList } from "../hooks/useReorderList"; // Adjust path as needed
 
 export default function WorkExperienceSection({
   workExperiences,
@@ -10,6 +11,8 @@ export default function WorkExperienceSection({
   setWorkTitle,
   currentTheme,
 }) {
+  const { moveItemUp, moveItemDown } = useReorderList(setWorkExperiences);
+
   const handleWorkChange = (index, field, value) => {
     const newWork = [...workExperiences];
     newWork[index][field] = value;
@@ -35,20 +38,6 @@ export default function WorkExperienceSection({
       newWork.splice(index, 1);
       setWorkExperiences(newWork);
     }
-  };
-
-  const moveItemUp = (index) => {
-    if (index <= 0) return;
-    const newWork = [...workExperiences];
-    [newWork[index], newWork[index - 1]] = [newWork[index - 1], newWork[index]];
-    setWorkExperiences(newWork);
-  };
-
-  const moveItemDown = (index) => {
-    if (index >= workExperiences.length - 1) return;
-    const newWork = [...workExperiences];
-    [newWork[index], newWork[index + 1]] = [newWork[index + 1], newWork[index]];
-    setWorkExperiences(newWork);
   };
 
   return (
