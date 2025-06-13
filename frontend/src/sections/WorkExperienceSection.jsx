@@ -1,7 +1,7 @@
 import React from "react";
-import EditableField from "./EditableField";
-import EditableDateRange from "./EditableDateRange";
-import SectionControls from "./SectionControls";
+import EditableField from "../components/EditableField";
+import EditableDateRange from "../components/EditableDateRange";
+import SectionControls from "../components/SectionControls";
 import { useReorderList } from "../hooks/useReorderList"; // Adjust path as needed
 
 export default function WorkExperienceSection({

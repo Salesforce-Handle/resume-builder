@@ -10,8 +10,8 @@ import VisibilityToggleMenu from "./components/VisibilityToggleMenu";
 import '@fontsource/inter/index.css';
 import './index.css';
 import { useResumeStorage } from "./components/hooks/useResumeStorage";
-import WorkExperienceSection from "./components/WorkExperienceSection";
-import EducationSection from "./components/EducationSection";
+import WorkExperienceSection from "./sections/WorkExperienceSection";
+import EducationSection from "./sections/EducationSection";
 
 
 export default function App() {
