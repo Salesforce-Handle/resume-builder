@@ -29,9 +29,9 @@ export default function App() {
         title: true,
         location: true
     },
-    summaryTitle: "Professional Summary",
+    summaryTitle: "Summary",
     summary: "",
-    workTitle: "Work Experience",
+    workTitle: "Experience",
     EduTitle: "Education",
     strengthtitle: "Strengths",
     skillTitle: "Skills",
