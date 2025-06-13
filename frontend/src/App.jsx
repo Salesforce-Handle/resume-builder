@@ -2,7 +2,6 @@
 import React, { useState } from "react";     
 import WelcomePopup from "./components/WelcomePopup";
 import { Briefcase, MapPin, Mail, Phone, Linkedin, Eye, EyeOff, Trophy, Award, Gem, Star, Sparkles } from "lucide-react";
-import EditableDateRange from "./components/EditableDateRange";
 import EditableField from "./components/EditableField";
 import EditableTag from "./components/EditableTag";
 import SectionControls from "./components/SectionControls";
@@ -10,6 +9,10 @@ import VisibilityToggleMenu from "./components/VisibilityToggleMenu";
 import '@fontsource/inter/index.css';
 import './index.css';
 import { useResumeStorage } from "./components/hooks/useResumeStorage";
+import SummarySection from "./sections/SummarySection";
+import WorkExperienceSection from "./sections/WorkExperienceSection";
+import EducationSection from "./sections/EducationSection";
+
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -26,9 +29,9 @@ export default function App() {
         title: true,
         location: true
     },
-    summaryTitle: "Professional Summary",
+    summaryTitle: "Summary",
     summary: "",
-    workTitle: "Work Experience",
+    workTitle: "Experience",
     EduTitle: "Education",
     strengthtitle: "Strengths",
     skillTitle: "Skills",
@@ -46,24 +49,6 @@ export default function App() {
       responsibility: ""
     }
   ]);
-  
-  const handleWorkChange = (index, field, value) => {
-    const newWork = [...workExperiences];
-    newWork[index][field] = value;
-    setWorkExperiences(newWork);
-  };
-
-  const addWorkExperience = () => {
-    setWorkExperiences([...workExperiences, { company: '', role: '', dateRange: { from: "", to: "" }, project: '', responsibility: '' }]);
-  };
-
-  const removeWorkExperience = (index) => {
-    if (workExperiences.length > 1) {
-      const newWork = [...workExperiences];
-      newWork.splice(index, 1);
-      setWorkExperiences(newWork);
-    }
-  };
 
   // edu
   const [educations, setEducations] = useState([
@@ -74,32 +59,6 @@ export default function App() {
       notes: "",
     },
   ]);
-
-  const handleEducationChange = (index, field, value) => {
-    const updated = [...educations];
-    updated[index][field] = value;
-    setEducations(updated);
-  };
-
-  const addEducation = () => {
-    setEducations([
-      ...educations,
-      {
-        institute: "",
-        degree: "",
-        duration: { from: "", to: "" },
-        notes: "",
-      },
-    ]);
-  };
-
-  const removeEducation = (index) => {
-    if (educations.length > 1) {
-      const updated = [...educations];
-      updated.splice(index, 1);
-      setEducations(updated);
-    }
-  };
  
   //skill
   const [skills, setSkills] = useState([""]);
@@ -178,7 +137,7 @@ export default function App() {
   ]);
 
   const addStrength = () => setStrengths([...strengths, { title: '', description: '' }]);
-  
+
   const removeStrength = (index) =>
     setStrengths(strengths.filter((_, i) => i !== index));
 
@@ -528,144 +487,44 @@ export default function App() {
         </div>
 
         <div className=" grid grid-cols-8 gap-4">        
-        {/* Left Column */}
-        <div id="left-sections" className="col-span-5 space-y-6">
+      {/* Left Column */}
+      <div id="left-sections" className="col-span-5 space-y-6">
 
         {/* Summary */}
-        <div  id="sum-section"  className="mb-2 px-4">
-          <section>
-          <div  id="sum-title" >
-            <EditableField value={formData.summaryTitle}  onChange={(val) => setFormData({ ...formData, summaryTitle: val })}  
-              placeholder="Summary" className={`${currentTheme.headerBorder} ${currentTheme.headerTitles}`} />
-          </div>
-          <div  id="sum-body" className="w-full">
-            <EditableField
-              value={formData.summary}
-              onChange={(val) => setFormData({ ...formData, summary: val })}
-              placeholder="Summarize your relevant skills, experience, and achievements that align with this role."
-              className={`w-full min-h-[50px] min-w-[100px] whitespace-pre-wrap text-xs text-gray-500 ${currentTheme.body}`}
-            />
-          </div>
-          </section>
+        <div className="mb-2 px-4">
+        <SummarySection
+          summaryTitle={formData.summaryTitle}
+          setSummaryTitle={(val) => setFormData({ ...formData, summaryTitle: val })}
+          summary={formData.summary}
+          setSummary={(val) => setFormData({ ...formData, summary: val })}
+          currentTheme={currentTheme}
+        />
+
         </div>
 
         {/* Work Experience */}
-        <div  id="work-exp-section"  className="mb-2 px-4">
-          <section>
-            {/* Work title */}
-          <div  id="work-title" >
-            <EditableField value={formData.workTitle}  onChange={(val) => setFormData({ ...formData, workTitle: val })}  
-              placeholder="Work Experience" className={`${currentTheme.headerBorder}  ${currentTheme.headerTitles}`} />
-          </div>
-
-           {workExperiences.map((exp, index) => (
-
-              <div key={index}
-              id={`work-ex-${index}`}
-              className={`relative group rounded hover:shadow hover:border-2 hover:border-blue-200 transition-all mb-4 ${
-              index !== workExperiences.length - 1 ? 'pb-1 border-b border-dashed border-gray-300' : ''
-              }`}>
-          
-                <SectionControls index={index} total={workExperiences.length}  onAdd={addWorkExperience} onRemove={removeWorkExperience} 
-                className={'absolute -top-10 right-10'} onMoveUp={(i) => moveItemUp(i, setWorkExperiences)}  onMoveDown={(i) => moveItemDown(i, setWorkExperiences)} />
-
-                <EditableField
-                  value={exp.role}
-                  onChange={(val) => handleWorkChange(index, 'role', val)}
-                  placeholder="Job Title"
-                  className={`font-medium ${currentTheme.body}`}
-                />
-                <EditableField
-                  value={exp.company}
-                  onChange={(val) => handleWorkChange(index, 'company', val)}
-                  placeholder="Company Name"
-                  className={`text-sm2 font-bold ${currentTheme.subheader}`}
-                />
-                <EditableDateRange
-                  value={exp.dateRange}
-                  onChange={(val) => handleWorkChange(index, 'dateRange', val)}
-                  className={`text-x2s ${currentTheme.body}`}
-                  mode="month-year"
-                />
-                <EditableField
-                  value={exp.project}
-                  onChange={(val) => handleWorkChange(index, 'project', val)}
-                  placeholder="Project Description"
-                  className={`text-xs text-gray-500 ${currentTheme.body}`}
-                />
-                <EditableField
-                  value={exp.responsibility}
-                  onChange={(val) => handleWorkChange(index, 'responsibility', val)}
-                  placeholder="• Highlight your accomplishments"
-                  className={`text-xs text-gray-700 whitespace-pre-wrap pl-2 [text-indent:-1.25rem]${currentTheme.body}`}
-                  bulleted={true}
-                />
-             </div>            
-            ))}
-          </section>          
+        <div className="mb-2 px-4">
+        <WorkExperienceSection
+          workExperiences={workExperiences}
+          setWorkExperiences={setWorkExperiences}
+          workTitle={formData.workTitle}
+          setWorkTitle={(val) => setFormData({ ...formData, workTitle: val })}
+          currentTheme={currentTheme}
+        />
         </div>
 
         {/* Education */}
-        <div  id="edu-section"  className="mb-2 px-4">
-          <section>
-
-          <div id="Edu-title">
-            <EditableField
-              value={formData.EduTitle}
-              onChange={(val) => setFormData({ ...formData, EduTitle: val })}
-              placeholder="Education"
-              className={`${currentTheme.headerBorder} ${currentTheme.headerTitles}`}
-            />
-          </div>
-
-          {educations.map((edu, index) => (
-            
-            <div key={index} id={`edu-${index}`} className={`relative group rounded hover:shadow hover:border-2 hover:border-blue-200 transition-all mb-4 ${
-              index !== educations.length - 1 ? 'pb-1 border-b border-dashed border-gray-300' : ''
-              }`}>
-              
-              <SectionControls
-                index={index}
-                total={educations.length}
-                onAdd={addEducation}
-                className={'absolute -top-10 right-10'} 
-                onRemove={removeEducation}
-                onMoveUp={(i) => moveItemUp(i, setEducations)}
-                onMoveDown={(i) => moveItemDown(i, setEducations)}
-              />
-
-              <EditableField
-                value={edu.degree}
-                onChange={(val) => handleEducationChange(index, 'degree', val)}
-                placeholder="Degree"
-                className={`text-sm2 ${currentTheme.body}`}
-              />
-
-              <EditableField
-                value={edu.institute}
-                onChange={(val) => handleEducationChange(index, 'institute', val)}
-                placeholder="Institute Name"
-                className={`text-xs text-gray-600 ${currentTheme.body}`}
-              />
-
-              <EditableDateRange
-                value={edu.duration}
-                onChange={(val) => handleEducationChange(index, 'duration', val)}
-                className={`text-x2s ${currentTheme.body}`}
-                mode="year"
-              />
-
-              <EditableField
-                value={edu.notes}
-                onChange={(val) => handleEducationChange(index, 'notes', val)}
-                placeholder="Additional Highlights "
-                className={`text-xs text-gray-500 italic ${currentTheme.body}`}
-              />
-            </div>
-          ))}
-             </section>
-          </div>
+        <div className="mb-2 px-4">
+        <EducationSection
+          educations={educations}
+          setEducations={setEducations}
+          formData={formData}
+          setFormData={setFormData}
+          currentTheme={currentTheme}
+        />
         </div>
+
+      </div>
 
         {/* Right Column */}
         <div id="right-sections" className="col-span-3 space-y-6">
