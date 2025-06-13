@@ -31,7 +31,7 @@ export default function WelcomePopup() {
         <h2 className="text-xl font-semibold mb-2 text-blue-700">👋 Welcome!</h2>
 
         <p className="text-sm text-gray-700 mb-2">
-          <strong>Built with </strong>❤️ by a Salesforce dev who's reviewed 100+ resumes.
+          <strong>Built with </strong>❤️ by a Salesforce dev who's reviewed 100+ CVs.
         </p>
 
         <div className="text-sm text-gray-600 mb-2">
