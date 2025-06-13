@@ -2,7 +2,7 @@ import React from "react";
 import EditableField from "../components/EditableField";
 import EditableDateRange from "../components/EditableDateRange";
 import SectionControls from "../components/SectionControls";
-import { useReorderList } from "../hooks/useReorderList"; // Adjust path as needed
+import { useReorderList } from "../components/hooks/useReorderList";
 
 export default function EducationSection({
   educations,

@@ -3,6 +3,7 @@ import EditableField from "../components/EditableField";
 import EditableDateRange from "../components/EditableDateRange";
 import SectionControls from "../components/SectionControls";
 import { useReorderList } from "../hooks/useReorderList"; // Adjust path as needed
+import './index.css';
 
 export default function WorkExperienceSection({
   workExperiences,
