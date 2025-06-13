@@ -41,8 +41,7 @@ export default function WorkExperienceSection({
   };
 
   return (
-    <div id="work-exp-section" className="mb-2 px-4">
-      <section>
+      <section className="mb-2 px-4">
         {/* Work Title */}
         <div id="work-title">
           <EditableField
@@ -107,6 +106,5 @@ export default function WorkExperienceSection({
           </div>
         ))}
       </section>
-    </div>
   );
 }

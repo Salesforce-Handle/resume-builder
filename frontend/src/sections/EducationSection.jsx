@@ -40,8 +40,7 @@ export default function EducationSection({
   };
 
   return (
-    <div id="edu-section" className="mb-2 px-4">
-      <section>
+      <section className="mb-2 px-4">
         <EditableField
           value={formData.EduTitle}
           onChange={(val) => setFormData({ ...formData, EduTitle: val })}
@@ -98,6 +97,5 @@ export default function EducationSection({
           </div>
         ))}
       </section>
-    </div>
   );
 }
