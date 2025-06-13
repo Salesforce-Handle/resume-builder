@@ -10,7 +10,7 @@ import VisibilityToggleMenu from "./components/VisibilityToggleMenu";
 import '@fontsource/inter/index.css';
 import './index.css';
 import { useResumeStorage } from "./components/hooks/useResumeStorage";
-import WorkExperienceSection from "./components/WorkExperienceSection";
+
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -47,6 +47,24 @@ export default function App() {
       responsibility: ""
     }
   ]);
+  
+  const handleWorkChange = (index, field, value) => {
+    const newWork = [...workExperiences];
+    newWork[index][field] = value;
+    setWorkExperiences(newWork);
+  };
+
+  const addWorkExperience = () => {
+    setWorkExperiences([...workExperiences, { company: '', role: '', dateRange: { from: "", to: "" }, project: '', responsibility: '' }]);
+  };
+
+  const removeWorkExperience = (index) => {
+    if (workExperiences.length > 1) {
+      const newWork = [...workExperiences];
+      newWork.splice(index, 1);
+      setWorkExperiences(newWork);
+    }
+  };
 
   // edu
   const [educations, setEducations] = useState([
@@ -533,15 +551,60 @@ export default function App() {
         </div>
 
         {/* Work Experience */}
+        <div  id="work-exp-section"  className="mb-2 px-4">
+          <section>
+            {/* Work title */}
+          <div  id="work-title" >
+            <EditableField value={formData.workTitle}  onChange={(val) => setFormData({ ...formData, workTitle: val })}  
+              placeholder="Work Experience" className={`${currentTheme.headerBorder}  ${currentTheme.headerTitles}`} />
+          </div>
 
-<WorkExperienceSection
-  workExperiences={workExperiences}
-  setWorkExperiences={setWorkExperiences}
-  workTitle={formData.workTitle}
-  setWorkTitle={(val) => setFormData({ ...formData, workTitle: val })}
-  currentTheme={currentTheme}
-/>
+           {workExperiences.map((exp, index) => (
 
+              <div key={index}
+              id={`work-ex-${index}`}
+              className={`relative group rounded hover:shadow hover:border-2 hover:border-blue-200 transition-all mb-4 ${
+              index !== workExperiences.length - 1 ? 'pb-1 border-b border-dashed border-gray-300' : ''
+              }`}>
+          
+                <SectionControls index={index} total={workExperiences.length}  onAdd={addWorkExperience} onRemove={removeWorkExperience} 
+                className={'absolute -top-10 right-10'} onMoveUp={(i) => moveItemUp(i, setWorkExperiences)}  onMoveDown={(i) => moveItemDown(i, setWorkExperiences)} />
+
+                <EditableField
+                  value={exp.role}
+                  onChange={(val) => handleWorkChange(index, 'role', val)}
+                  placeholder="Job Title"
+                  className={`font-medium ${currentTheme.body}`}
+                />
+                <EditableField
+                  value={exp.company}
+                  onChange={(val) => handleWorkChange(index, 'company', val)}
+                  placeholder="Company Name"
+                  className={`text-sm2 font-bold ${currentTheme.subheader}`}
+                />
+                <EditableDateRange
+                  value={exp.dateRange}
+                  onChange={(val) => handleWorkChange(index, 'dateRange', val)}
+                  className={`text-x2s ${currentTheme.body}`}
+                  mode="month-year"
+                />
+                <EditableField
+                  value={exp.project}
+                  onChange={(val) => handleWorkChange(index, 'project', val)}
+                  placeholder="Project Description"
+                  className={`text-xs text-gray-500 ${currentTheme.body}`}
+                />
+                <EditableField
+                  value={exp.responsibility}
+                  onChange={(val) => handleWorkChange(index, 'responsibility', val)}
+                  placeholder="• Highlight your accomplishments"
+                  className={`text-xs text-gray-700 whitespace-pre-wrap pl-2 [text-indent:-1.25rem]${currentTheme.body}`}
+                  bulleted={true}
+                />
+             </div>            
+            ))}
+          </section>          
+        </div>
 
         {/* Education */}
         <div  id="edu-section"  className="mb-2 px-4">
