@@ -112,7 +112,7 @@ export default function WorkExperienceSection({
               value={exp.responsibility}
               onChange={(val) => handleWorkChange(index, "responsibility", val)}
               placeholder="• Highlight your accomplishments"
-              className={`text-xs text-gray-700 whitespace-pre-wrap pl-2 [text-indent:-1.25rem] ${currentTheme.body}`}
+              className={`text-xs text-gray-700 whitespace-pre-wrap pl-2  ${currentTheme.body}`}
               bulleted={true}
             />
           </div>
@@ -121,4 +121,3 @@ export default function WorkExperienceSection({
     </div>
   );
 }
-    
