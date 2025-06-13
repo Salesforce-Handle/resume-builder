@@ -1,5 +1,5 @@
 import React from "react";
-import EditableField from "./EditableField";
+import EditableField from "../components/EditableField";
 import './index.css';
 
 export default function SummarySection({
