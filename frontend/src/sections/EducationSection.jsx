@@ -84,7 +84,7 @@ export default function EducationSection({
             <EditableDateRange
               value={edu.duration}
               onChange={(val) => handleChange(index, "duration", val)}
-              className={`text-x2s ${currentTheme.body}`}
+              className={`text-xs ${currentTheme.body}`}
               mode="year"
             />
 
