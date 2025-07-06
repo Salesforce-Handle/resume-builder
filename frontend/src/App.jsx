@@ -406,7 +406,7 @@ export default function App() {
    {/* Resume container starts here */}
 
    <div className="flex justify-center ">
-    <div id="resume-preview" className="w-full max-w-[840px] aspect-[47/66.5] bg-white shadow-xl p-10 lg:w-4/5 ">
+    <div id="resume-preview" className="w-full max-w-[940px] aspect-[47/66.5] bg-white shadow-xl p-14 lg:w-4/5 ">
 
       {/* Persons Info */}
         <div id="person-card" className="col-span-3 space-y-6">
