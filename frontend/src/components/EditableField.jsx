@@ -97,7 +97,7 @@ export default function EditableField({
         onInput={handleInput}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
-        className={`bg-white transition-colors duration-200 hover:text-gray-500 focus:text-gray-500 hover:border hover:shadow-md hover:border-blue-500 focus:border focus:border-gray-300 focus:outline-none px-2 py-1 min-w-[100px] whitespace-pre-wrap ${className}`}
+        className={`bg-white transition-colors duration-200 hover:text-gray-500 focus:text-gray-500 hover:border hover:shadow-md hover:border-blue-500 focus:border focus:border-gray-300 focus:outline-none min-w-[100px] whitespace-pre-wrap ${className}`}
       />
     </div>
   );
