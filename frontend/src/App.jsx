@@ -582,7 +582,7 @@ export default function App() {
                         value={strength.title}
                         onChange={(val) => handleStrengthChange(index, 'title', val)}
                         placeholder="Your Strength"
-                        className={`text-sm2 font-semibold ${currentTheme.subheader}`}
+                        className={`text-xs font-semibold ${currentTheme.subheader}`}
                       />
 
                       {/* Strength Description */}
