@@ -87,7 +87,7 @@ export default function WorkExperienceSection({
             <EditableDateRange
               value={exp.dateRange}
               onChange={(val) => handleWorkChange(index, "dateRange", val)}
-              className={`text-xs ${currentTheme.body}`}
+              className={`text-x2s ${currentTheme.body}`}
               mode="month-year"
             />
             <EditableField
