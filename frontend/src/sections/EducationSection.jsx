@@ -78,7 +78,7 @@ export default function EducationSection({
               value={edu.institute}
               onChange={(val) => handleChange(index, "institute", val)}
               placeholder="Institute Name"
-              className={`text-xs text-gray-600 ${currentTheme.body}`}
+              className={`text-sm text-gray-600 ${currentTheme.body}`}
             />
 
             <EditableDateRange
