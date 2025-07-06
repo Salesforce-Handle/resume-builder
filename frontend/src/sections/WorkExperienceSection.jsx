@@ -82,7 +82,7 @@ export default function WorkExperienceSection({
               value={exp.company}
               onChange={(val) => handleWorkChange(index, "company", val)}
               placeholder="Company Name"
-              className={`text-sm font-bold ${currentTheme.subheader}`}
+              className={`leading-tight text-sm font-bold ${currentTheme.subheader}`}
             />
             <EditableDateRange
               value={exp.dateRange}
