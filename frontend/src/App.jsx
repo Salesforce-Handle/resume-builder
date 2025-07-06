@@ -405,7 +405,7 @@ export default function App() {
 
    {/* Resume container starts here */}
 
-   <div className="flex justify-center ">
+   <div className="flex justify-center gap-6 ">
     <div id="resume-preview" className="w-full max-w-[940px] aspect-[47/66.5] bg-white shadow-xl p-14 lg:w-4/5 ">
 
       {/* Persons Info */}
@@ -724,18 +724,22 @@ export default function App() {
 
       </div>
       </div>
-   </div>
+   
 
-      <div className="w-full max-w-[300px] min-w-[200px]">
-  <ins className="adsbygoogle"
-    style={{ display: 'block', width: '100%' }}
-    data-ad-client="ca-pub-5049593526296631"
-    data-ad-slot="5498782763"
-    data-ad-format="auto"
-    data-full-width-responsive="true"
-  />
+    {/* Ad Sidebar */}
+    <div className="hidden lg:block w-[300px]">
+      <div className="sticky top-20">
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-client="ca-pub-5049593526296631"
+          data-ad-slot="5498782763"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
+      </div>
+    </div>
 </div>
-
     </div>
   </>
   );
