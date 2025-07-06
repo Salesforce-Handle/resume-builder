@@ -726,17 +726,16 @@ export default function App() {
       </div>
    </div>
 
-        {/* Right Ad Sidebar */}
-      <div className="hidden lg:block lg:w-[160px] pl-4">
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block", width: "160px", height: "600px" }}
-          data-ad-client="ca-pub-5049593526296631"
-          data-ad-slot="5498782763"
-          data-ad-format="auto"
-          data-full-width-responsive="false"
-        ></ins>
-      </div>
+      <div className="w-full max-w-[300px] min-w-[200px]">
+  <ins className="adsbygoogle"
+    style={{ display: 'block', width: '100%' }}
+    data-ad-client="ca-pub-5049593526296631"
+    data-ad-slot="5498782763"
+    data-ad-format="auto"
+    data-full-width-responsive="true"
+  />
+</div>
+
     </div>
   </>
   );
