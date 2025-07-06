@@ -80,7 +80,7 @@ export default function EditableDateRange({
         onClick={() => setShowPicker((prev) => !prev)}
       >
         <CalendarDays className="w-3.5 h-3.5 text-gray-500" />
-        <span className="text-gray-600 truncate max-w-[130px]">{displayValue}</span>
+        <span className={`text-gray-600 truncate max-w-[130px] ${className}`}>{displayValue}</span>
       </div>
 
       {showPicker && (
