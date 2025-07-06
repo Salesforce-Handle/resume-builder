@@ -1,5 +1,5 @@
 // React Resume Builder with Editable Dynamic Fields and Modern UI Layout
-import React, { useState } from "react";     
+import React, { useState, useEffect } from "react";     
 import WelcomePopup from "./components/WelcomePopup";
 import { Briefcase, MapPin, Mail, Phone, Linkedin, Eye, EyeOff, Trophy, Award, Gem, Star, Sparkles } from "lucide-react";
 import EditableField from "./components/EditableField";
@@ -277,6 +277,7 @@ export default function App() {
     ${clonedPreview.outerHTML}
   </body>
   </html>`;
+  
 
   try {
       // Show a random quote before starting
@@ -305,6 +306,14 @@ export default function App() {
       setIsGenerating(false); // 🔴 Hide loader
     }
   };
+  
+  useEffect(() => {
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error("AdSense error:", e);
+    }
+  }, []);
   
   return (
   <>
@@ -716,6 +725,18 @@ export default function App() {
       </div>
       </div>
    </div>
+
+        {/* Right Ad Sidebar */}
+      <div className="hidden lg:block lg:w-[160px] pl-4">
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block", width: "160px", height: "600px" }}
+          data-ad-client="ca-pub-5049593526296631"
+          data-ad-slot="5498782763"
+          data-ad-format="auto"
+          data-full-width-responsive="false"
+        ></ins>
+      </div>
     </div>
   </>
   );
