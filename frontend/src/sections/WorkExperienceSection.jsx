@@ -1,7 +1,8 @@
-import React from "react";
+import React,  { useState } from "react";
 import EditableField from "../components/EditableField";
 import EditableDateRange from "../components/EditableDateRange";
 import SectionControls from "../components/SectionControls";
+import SectionDeleteControl from "../components/SectionDeleteControl";
 import { useReorderList } from "../components/hooks/useReorderList";
 
 export default function WorkExperienceSection({
@@ -12,7 +13,7 @@ export default function WorkExperienceSection({
   currentTheme,
 }) {
   const { moveItemUp, moveItemDown } = useReorderList(setWorkExperiences);
-
+  
   const handleWorkChange = (index, field, value) => {
     const newWork = [...workExperiences];
     newWork[index][field] = value;
@@ -40,16 +41,27 @@ export default function WorkExperienceSection({
     }
   };
 
+  const [visible, setVisible] = useState(true); // 👈 local state to toggle visibility
+
+  const handleDeleteSection = () => {
+    if (confirm("Remove entire Work Experience section?")) {
+      setVisible(false);
+    }
+  };
+
+  if (!visible) return null; // 👈 hide if deleted
+
   return (
       <section>
         {/* Work Title */}
-        <div id="work-title">
+        <div id="work-title" className="relative group">
           <EditableField
             value={workTitle}
             onChange={(val) => setWorkTitle(val)}
             placeholder="Work Experience"
             className={`${currentTheme.headerBorder} ${currentTheme.headerTitles}`}
           />
+          <SectionDeleteControl onDelete={handleDeleteSection} />
         </div>
 
         {workExperiences.map((exp, index) => (

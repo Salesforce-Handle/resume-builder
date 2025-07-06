@@ -1,7 +1,8 @@
-import React from "react";
+import React,  { useState } from "react";
 import EditableField from "../components/EditableField";
 import EditableDateRange from "../components/EditableDateRange";
 import SectionControls from "../components/SectionControls";
+import SectionDeleteControl from "../components/SectionDeleteControl";
 import { useReorderList } from "../components/hooks/useReorderList";
 
 export default function EducationSection({
@@ -39,14 +40,28 @@ export default function EducationSection({
     }
   };
 
+
+  const [visible, setVisible] = useState(true); // 👈 local state to toggle visibility
+
+  const handleDeleteSection = () => {
+    if (confirm("Remove entire Education section?")) {
+      setVisible(false);
+    }
+  };
+
+  if (!visible) return null; // 👈 hide if deleted
+
   return (
       <section>
+      <div  id="edu-title" className="relative group">
+        <SectionDeleteControl onDelete={handleDeleteSection} />
         <EditableField
           value={formData.EduTitle}
           onChange={(val) => setFormData({ ...formData, EduTitle: val })}
           placeholder="Education"
           className={`${currentTheme.headerBorder} ${currentTheme.headerTitles}`}
         />
+      </div>
 
         {educations.map((edu, index) => (
           <div
