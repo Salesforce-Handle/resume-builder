@@ -12,9 +12,9 @@ export default function VisibilityToggleMenu({ visibility, onToggle, fields }) {
         >
           <span className="capitalize truncate">{field}</span>
           {visibility[field] ? (
-            <Eye size={14} className="text-green-600" />
+            <Eye size={14} className="text-purple-600" />
           ) : (
-            <EyeOff size={14} className="text-red-500" />
+            <EyeOff size={14} className="text-gray-200" />
           )}
         </button>
       ))}
