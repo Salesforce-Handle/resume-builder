@@ -86,69 +86,69 @@ export default function LandingPage() {
         <FeatureCard title="No Login Needed" desc="Privacy-first, start instantly." />
         <FeatureCard title="Free Forever" desc="No hidden paywalls, just resumes." />
       </section>
-{/* Testimonials + Feedback Side-by-Side */}
-<section className="bg-gradient-to-r from-blue-50 to-purple-100 py-20 mt-20">
-  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-6 items-center">
-    
-    {/* Testimonials */}
-    <div className="flex flex-col items-center justify-center text-center space-y-6">
-      <h3 className="text-3xl font-bold text-blue-800">Loved by early users</h3>
-      <div className="relative h-48 w-full max-w-md">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.6 }}
-            className="bg-white border border-blue-100 shadow-lg p-6 rounded-2xl absolute w-full"
-          >
-            <p className="text-lg italic text-gray-700 mb-3">
-              “{allTestimonials[index].quote}”
-            </p>
-            <p className="text-base font-semibold text-indigo-700">
-              — {allTestimonials[index].author}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </div>
+      
+      {/* Testimonials + Feedback Side-by-Side */}
+      <section className="bg-gradient-to-r from-blue-50 to-purple-100 py-20 mt-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-6 items-center">
+          
+          {/* Testimonials */}
+          <div className="flex flex-col items-center justify-center text-center space-y-6">
+            <h3 className="text-3xl font-bold text-blue-800">Loved by early users</h3>
+            <div className="relative h-48 w-full max-w-md">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.6 }}
+                  className="bg-white border border-blue-100 shadow-lg p-6 rounded-2xl absolute w-full"
+                >
+                  <p className="text-lg italic text-gray-700 mb-3">
+                    “{allTestimonials[index].quote}”
+                  </p>
+                  <p className="text-base font-semibold text-indigo-700">
+                    — {allTestimonials[index].author}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
 
-    {/* Feedback Form */}
-    <div className="bg-white border border-gray-200 shadow-md rounded-2xl p-6 w-full">
-      <h4 className="text-xl font-semibold text-blue-800 mb-4 text-center md:text-left">
-        Leave Your Feedback
-      </h4>
-      <form onSubmit={handleSubmit}>
-        <label className="block mb-4">
-          <span className="text-sm text-gray-700">Your Name</span>
-          <input
-            type="text"
-            name="name"
-            required
-            className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </label>
-        <label className="block mb-4">
-          <span className="text-sm text-gray-700">Your Testimonial</span>
-          <textarea
-            name="quote"
-            required
-            rows="3"
-            className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          ></textarea>
-        </label>
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
-
+          {/* Feedback Form */}
+          <div className="bg-white border border-gray-200 shadow-md rounded-2xl p-6 w-full">
+            <h4 className="text-xl font-semibold text-blue-800 mb-4 text-center md:text-left">
+              Leave Your Feedback
+            </h4>
+            <form onSubmit={handleSubmit}>
+              <label className="block mb-4">
+                <span className="text-sm text-gray-700">Your Name</span>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </label>
+              <label className="block mb-4">
+                <span className="text-sm text-gray-700">Your Testimonial</span>
+                <textarea
+                  name="quote"
+                  required
+                  rows="3"
+                  className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                ></textarea>
+              </label>
+              <button
+                type="submit"
+                className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="mt-20 py-8 border-t text-sm text-gray-500 text-center bg-white">
