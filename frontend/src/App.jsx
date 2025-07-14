@@ -8,7 +8,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/builder" element={<ResumeBuilder />} />
+        <Route path="/impactResume" element={<ResumeBuilder />} />
       </Routes>
     </Router>
   );

@@ -31,11 +31,12 @@ app.post('/generate-pdf', async (req, res) => {
     const browser = await puppeteer.launch({
     headless: 'new', 
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
+    });
+    
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: 'networkidle0' });
 
-    //const pdfBuffer = await page.pdf({ format: 'A4' });
+    const currentYear = new Date().getFullYear();
     const pdfBuffer = await page.pdf({
       format: 'A4',
       displayHeaderFooter: true,
@@ -48,13 +49,13 @@ app.post('/generate-pdf', async (req, res) => {
       },
       footerTemplate: `
         <div style="width: 100%; font-size: 10px; text-align: center; color: #666">
-        <div class="page-footer">
-        © 2025 Resume Handle | www.salesforcehandle.com </div> 
+          <div class="page-footer">
+            © ${currentYear} ImpactResume | www.salesforcehandle.com
+          </div>
         </div>
       `,
       headerTemplate: '<div></div>', // Optional, can be empty if you don’t need a header
     });
-
 
     await browser.close();
 

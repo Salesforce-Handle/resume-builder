@@ -80,24 +80,6 @@ export default function App() {
   { title: 'Ownership', description: '' }
   ]);
 
-  /* item up down methods
-  const moveItemUp = (index, listSetter) => {
-    listSetter(prev => {
-      if (index <= 0) return prev;
-      const newList = [...prev];
-      [newList[index - 1], newList[index]] = [newList[index], newList[index - 1]];
-      return newList;
-    });
-  };
-  
-  const moveItemDown = (index, listSetter) => {
-    listSetter(prev => {
-      if (index >= prev.length - 1) return prev;
-      const newList = [...prev];
-      [newList[index + 1], newList[index]] = [newList[index], newList[index + 1]];
-      return newList;
-    });
-  }; */
   
   useResumeStorage({
   formData, setFormData,
