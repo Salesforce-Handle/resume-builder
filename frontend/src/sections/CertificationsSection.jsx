@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EditableField from "../components/EditableField";
 import SectionControls from "../components/SectionControls";
 import SectionDeleteControl from "../components/SectionDeleteControl";
+import { useReorderList } from "../components/hooks/useReorderList"; // ✅ using external hook
 
 export default function CertificationsSection({
   certifications,
@@ -11,6 +12,7 @@ export default function CertificationsSection({
   currentTheme,
 }) {
   const [visible, setVisible] = useState(true);
+  const { moveItemUp, moveItemDown } = useReorderList(setCertifications); // ✅ reused hook
 
   const handleCertificationChange = (index, newVal) => {
     const updated = [...certifications];
@@ -26,20 +28,6 @@ export default function CertificationsSection({
     if (certifications.length === 1) return;
     const updated = [...certifications];
     updated.splice(index, 1);
-    setCertifications(updated);
-  };
-
-  const moveItemUp = (index) => {
-    if (index <= 0) return;
-    const updated = [...certifications];
-    [updated[index - 1], updated[index]] = [updated[index], updated[index - 1]];
-    setCertifications(updated);
-  };
-
-  const moveItemDown = (index) => {
-    if (index >= certifications.length - 1) return;
-    const updated = [...certifications];
-    [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]];
     setCertifications(updated);
   };
 

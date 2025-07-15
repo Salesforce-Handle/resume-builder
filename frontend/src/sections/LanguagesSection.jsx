@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EditableField from "../components/EditableField";
 import SectionControls from "../components/SectionControls";
 import SectionDeleteControl from "../components/SectionDeleteControl";
+import { useReorderList } from "../components/hooks/useReorderList"; // ✅ External reorder hook
 
 export default function LanguagesSection({
   languages,
@@ -11,6 +12,7 @@ export default function LanguagesSection({
   currentTheme,
 }) {
   const [visible, setVisible] = useState(true);
+  const { moveItemUp, moveItemDown } = useReorderList(setLanguages); // ✅ Hook used here
 
   const handleLanguageChange = (index, newVal) => {
     const updated = [...languages];
@@ -26,20 +28,6 @@ export default function LanguagesSection({
     if (languages.length === 1) return;
     const updated = [...languages];
     updated.splice(index, 1);
-    setLanguages(updated);
-  };
-
-  const moveItemUp = (index) => {
-    if (index <= 0) return;
-    const updated = [...languages];
-    [updated[index - 1], updated[index]] = [updated[index], updated[index - 1]];
-    setLanguages(updated);
-  };
-
-  const moveItemDown = (index) => {
-    if (index >= languages.length - 1) return;
-    const updated = [...languages];
-    [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]];
     setLanguages(updated);
   };
 
