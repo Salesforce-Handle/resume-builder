@@ -58,26 +58,22 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Hero */}
-      <main className="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div className="text-left">
-          <h2 className="text-5xl font-extrabold mb-6 text-blue-900 leading-snug">
-            Create Job-Winning <br /> Resumes Instantly
-          </h2>
-          <p className="text-gray-700 mb-8 text-lg leading-relaxed">
-            Simple. Fast. Beautiful. Build your resume with no signups, and export to PDF in seconds.
-          </p>
-          <Link
-            to="/builder"
-            className="inline-block bg-gradient-to-r from-indigo-500 to-pink-500 text-white text-lg px-6 py-3 rounded-full hover:brightness-110 transition shadow-lg font-medium"
-          >
-            Get Started Free →
-          </Link>
-        </div>
-        <div>
-          <img src={heroImage} alt="Resume Illustration" className="w-full max-w-lg mx-auto drop-shadow-xl" />
-        </div>
+      {/* Head CTA */}
+      <main className="py-24 px-6 max-w-3xl mx-auto text-center">
+        <h2 className="text-5xl font-extrabold mb-6 text-blue-900 leading-snug">
+          Create Job-Winning Resumes Instantly
+        </h2>
+        <p className="text-gray-700 mb-8 text-lg leading-relaxed">
+          Simple. Fast. Beautiful. Build your resume with no signups, and export to PDF in seconds.
+        </p>
+        <Link
+          to="/builder"
+          className="inline-block bg-gradient-to-r from-indigo-500 to-pink-500 text-white text-lg px-8 py-3 rounded-full hover:brightness-110 transition shadow-lg font-medium"
+        >
+          Get Started Free →
+        </Link>
       </main>
+
 
       {/* Features */}
       <section className="mt-24 grid gap-8 sm:grid-cols-2 md:grid-cols-4 px-6 max-w-6xl mx-auto">
@@ -87,10 +83,19 @@ export default function LandingPage() {
         <FeatureCard title="Free Forever" desc="No hidden paywalls, just resumes." />
       </section>
       
-      {/* Testimonials + Feedback Side-by-Side */}
+      {/* Testimonials + Hero Image Side-by-Side */}
       <section className="bg-gradient-to-r from-blue-50 to-purple-100 py-20 mt-20">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-6 items-center">
-          
+    
+          {/* Hero Image */}
+          <div>
+            <img
+              src={heroImage}
+              alt="Resume Illustration"
+              className="w-full max-w-md mx-auto drop-shadow-xl"
+            />
+          </div>
+
           {/* Testimonials */}
           <div className="flex flex-col items-center justify-center text-center space-y-6">
             <h3 className="text-3xl font-bold text-blue-800">Loved by early users</h3>
@@ -115,38 +120,67 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Feedback Form */}
-          <div className="bg-white border border-gray-200 shadow-md rounded-2xl p-6 w-full">
-            <h4 className="text-xl font-semibold text-blue-800 mb-4 text-center md:text-left">
-              Leave Your Feedback
-            </h4>
-            <form onSubmit={handleSubmit}>
-              <label className="block mb-4">
-                <span className="text-sm text-gray-700">Your Name</span>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </label>
-              <label className="block mb-4">
-                <span className="text-sm text-gray-700">Your Testimonial</span>
-                <textarea
-                  name="quote"
-                  required
-                  rows="3"
-                  className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
-              </label>
-              <button
-                type="submit"
-                className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition"
-              >
-                Submit
-              </button>
-            </form>
+        </div>
+      </section>
+
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-blue-800 mb-10">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            <FAQItem
+              question="Is this really free?"
+              answer="Yes! ImpactResume is completely free to use. No logins, no hidden paywalls. Just build and download your resume."
+            />
+            <FAQItem
+              question="Do I need to create an account?"
+              answer="Nope. You can start building right away — no signups or emails required."
+            />
+            <FAQItem
+              question="Is the resume ATS-friendly?"
+              answer="Yes, our templates are designed with clean formatting and keywords that ATS systems can easily scan."
+            />
+            <FAQItem
+              question="Where is my data stored?"
+              answer="All data is stored in your browser. Nothing is uploaded or tracked — your privacy stays with you."
+            />
           </div>
+        </div>
+      </section>
+
+      {/* Feedback Section (moved to bottom) */}
+      <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-2xl mx-auto px-6 bg-white border border-gray-200 shadow-md rounded-2xl p-8">
+          <h4 className="text-2xl font-semibold text-blue-800 mb-6 text-center">
+            We'd Love Your Feedback 💬
+          </h4>
+          <form onSubmit={handleSubmit}>
+            <label className="block mb-4">
+              <span className="text-sm text-gray-700">Your Name</span>
+              <input
+                type="text"
+                name="name"
+                required
+                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </label>
+            <label className="block mb-4">
+              <span className="text-sm text-gray-700">Your Testimonial</span>
+              <textarea
+                name="quote"
+                required
+                rows="3"
+                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              ></textarea>
+            </label>
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition w-full"
+            >
+              Submit
+            </button>
+          </form>
         </div>
       </section>
 
@@ -166,3 +200,25 @@ function FeatureCard({ title, desc }) {
     </div>
   );
 }
+
+function FAQItem({ question, answer }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="border border-gray-200 rounded-lg shadow-sm">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full text-left px-5 py-4 flex justify-between items-center focus:outline-none"
+      >
+        <span className="text-lg font-medium text-gray-800">{question}</span>
+        <span className="text-blue-600 text-xl">{isOpen ? "−" : "+"}</span>
+      </button>
+      {isOpen && (
+        <div className="px-5 pb-4 text-gray-700">
+          {answer}
+        </div>
+      )}
+    </div>
+  );
+}
+
