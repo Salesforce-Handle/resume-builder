@@ -6,6 +6,8 @@ import VisibilityToggleMenu from "./components/VisibilityToggleMenu";
 import '@fontsource/inter/index.css';
 import './index.css';
 import { useResumeStorage } from "./components/hooks/useResumeStorage";
+import { track } from '@vercel/analytics';
+
 
 //sections imported
 import SummarySection from "./sections/SummarySection";
@@ -215,6 +217,7 @@ export default function App() {
     link.href = url;
     link.download = 'resume.pdf';
     link.click();
+      track('Resume Downloaded'); 
     } catch (err) {
       console.error('PDF download failed:', err);
     } finally {

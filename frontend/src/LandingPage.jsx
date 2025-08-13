@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import heroImage from "/src/assets/resume-illustration.png";
 import { motion, AnimatePresence } from "framer-motion";
+import { track } from '@vercel/analytics';
+
 
 const defaultTestimonials = [
   { quote: "Built my resume in 5 minutes. Way easier than Canva.", author: "Aarav M." },
@@ -41,6 +43,7 @@ export default function LandingPage() {
     setAllTestimonials([newTestimonial, ...allTestimonials]);
     e.target.reset();
     alert("Thanks for your feedback!");
+     track('Feedback Submitted');
   };
 
   return (
