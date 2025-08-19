@@ -217,11 +217,12 @@ export default function App() {
     link.href = url;
     link.download = 'resume.pdf';
     link.click();
-      track('Resume Downloaded'); 
+    
     } catch (err) {
       console.error('PDF download failed:', err);
     } finally {
       setIsGenerating(false); // 🔴 Hide loader
+      track('Resume Downloaded'); 
     }
   };
   

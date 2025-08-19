@@ -43,7 +43,7 @@ export default function LandingPage() {
     setAllTestimonials([newTestimonial, ...allTestimonials]);
     e.target.reset();
     alert("Thanks for your feedback!");
-     track('Feedback Submitted');
+    track('Feedback Submitted');
   };
 
   return (
@@ -224,4 +224,5 @@ function FAQItem({ question, answer }) {
     </div>
   );
 }
+
 
