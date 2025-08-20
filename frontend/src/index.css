@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@custom-variant hover (&:hover);
+/* …rest of your CSS… */
+
 
 @layer utilities {
   .text-sm2 {
