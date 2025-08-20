@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @custom-variant hover (&:hover);
-/* …rest of your CSS… */
+/* hover issues bug fix for tailwind v4 */
 
 
 @layer utilities {
