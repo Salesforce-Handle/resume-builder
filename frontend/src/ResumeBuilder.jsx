@@ -166,7 +166,9 @@ export default function App() {
     const clonedPreview = preview.cloneNode(true);
     clonedPreview.style.boxSizing = "border-box";
     clonedPreview.classList.remove("shadow-xl", "p-14");
+    
     // COMMENTING : clonedPreview.classList.remove("w-full", "lg:w-4/5", "shadow-xl", "p-14");
+    clonedPreview.classList.remove("w-full", "lg:w-4/5", "shadow-xl", "p-14");
 
     // Remove no-print items
     clonedPreview.querySelectorAll(".no-print").forEach((el) => el.remove());
