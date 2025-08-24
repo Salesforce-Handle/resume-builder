@@ -160,72 +160,81 @@ export default function App() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   
   const downloadPDF = async () => {
-  const preview = document.getElementById('resume-preview');
-  // Clone the preview so you can modify it without touching the live DOM
-  const clonedPreview = preview.cloneNode(true);
-  //clonedPreview.style.padding = '10mm';
-  clonedPreview.style.boxSizing = 'border-box';
-  clonedPreview.classList.remove('w-full', 'lg:w-4/5', 'shadow-xl', 'p-14');
-  const eyeMenus = clonedPreview.querySelectorAll(".no-print");
-  eyeMenus.forEach((el) => el.remove());
+    const preview = document.getElementById("resume-preview");
 
-  const fullHtml = `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Resume</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-    
-      body {
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
-        padding-bottom: 20mm;
+    // Clone so you don’t mess with live DOM
+    const clonedPreview = preview.cloneNode(true);
+    clonedPreview.style.boxSizing = "border-box";
+    clonedPreview.classList.remove("w-full", "lg:w-4/5", "shadow-xl", "p-14");
+
+    // Remove no-print items
+    clonedPreview.querySelectorAll(".no-print").forEach((el) => el.remove());
+
+    const fullHtml = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Resume</title>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+          font-family: 'Inter', sans-serif;
+          margin: 0;
+          padding: 0;
+          padding-bottom: 20mm;
+        }
+      </style>
+    </head>
+    <body>
+      ${clonedPreview.outerHTML}
+    </body>
+    </html>`;
+
+    try {
+      // Show a motivational quote during generation
+      const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+      setQuote(randomQuote);
+      setIsGenerating(true);
+
+      // Call backend
+      const response = await fetch(`${backendUrl}/generate-pdf`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ html: fullHtml }),
+      });
+
+      if (!response.ok) throw new Error("Failed to generate PDF");
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      // ✅ Create link in DOM (Safari fix)
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "resume.pdf";
+      document.body.appendChild(link);
+
+      // ✅ Special handling for iOS Safari (doesn’t support link.click())
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        window.open(url, "_blank"); // Open in new tab, user can share/save
+      } else {
+        link.click();
       }
-      #resume-preview {
-        box-sizing: border-box;
-      }
 
-    </style>
-  </head>
-  <body>
-    ${clonedPreview.outerHTML}
-  </body>
-  </html>`;
-  
+      // ✅ Cleanup
+      link.remove();
+      window.URL.revokeObjectURL(url);
 
-  try {
-      // Show a random quote before starting
-    const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
-    setQuote(randomQuote);
-    setIsGenerating(true); // 🟢 Show loader
-    const response = await fetch(`${backendUrl}/generate-pdf`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ html: fullHtml }),
-    });
-
-    if (!response.ok) throw new Error('Failed to generate PDF');
-
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'resume.pdf';
-    link.click();
-    
     } catch (err) {
-      console.error('PDF download failed:', err);
+      console.error("PDF download failed:", err);
     } finally {
-      setIsGenerating(false); // 🔴 Hide loader
-      track('Resume Downloaded'); 
+      setIsGenerating(false);
+      track("Resume Downloaded");
     }
   };
-  
+
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
