@@ -1,0 +1,39 @@
+version: 2
+updates:
+  # FRONTEND (npm)
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "weekly"        # change to "daily" if you prefer
+    versioning-strategy: lockfile-only
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(frontend)"
+    labels:
+      - "deps"
+      - "frontend"
+
+  # BACKEND (npm)
+  - package-ecosystem: "npm"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+    versioning-strategy: lockfile-only
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(backend)"
+    labels:
+      - "deps"
+      - "backend"
+
+  # GITHUB ACTIONS workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "deps(actions)"
+    labels:
+      - "deps"
+      - "ci"

@@ -258,7 +258,7 @@ export default function App() {
     </div>
   )}
 
-  <div className="min-h-screen p-6 lg:p-12 font-[Inter] bg-gradient-to-br from-gray-50 to-white">
+  <div className="min-h-screen p-3 sm:p-4 md:p-6 lg:p-12 font-[Inter] bg-gradient-to-br from-gray-50 to-white">
 
    {/* Top panel here */}
     <div className="mb-6 flex flex-wrap gap-4 justify-between items-center">
@@ -325,7 +325,7 @@ export default function App() {
    {/* Resume container starts here */}
 
    <div className="flex justify-center gap-6 ">
-    <div id="resume-preview" className="w-full max-w-[940px] aspect-[47/66.5] bg-white shadow-xl p-14 lg:w-4/5 ">
+    <div id="resume-preview" className="w-full max-w-[940px] bg-white shadow-xl p-4 sm:p-6 md:p-10 lg:p-14">
 
       {/* Persons Info */}
         <PersonalInfoSection
@@ -334,9 +334,10 @@ export default function App() {
           currentTheme={currentTheme}
         />
 
-        <div className=" grid grid-cols-8 gap-4">        
+        <div className="grid grid-cols-1 md:grid-cols-8 gap-4">
+
       {/* Left Column */}
-      <div id="left-sections" className="col-span-5 space-y-6">
+      <div id="left-sections" className="md:col-span-5 space-y-6">
 
         {/* Summary */}
         <div className="mb-2 px-4">
@@ -375,7 +376,7 @@ export default function App() {
       </div>
 
         {/* Right Column */}
-        <div id="right-sections" className="col-span-3 space-y-6">
+        <div id="right-sections" className="md:col-span-3 space-y-6">
         
         {/* Strengths */}
         <StrengthSection
