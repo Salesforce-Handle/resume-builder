@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.PORT || 3001;  
+const PORT = process.env.PORT || 3001;
 
 const allowedOrigins = [
   'https://resume.salesforcehandle.com',
@@ -20,20 +20,26 @@ app.use(cors({
   }
 }));
 
-
-app.use(express.json({ limit: '10mb' })); // in case HTML is large
-
+app.use(express.json({ limit: '10mb' })); // handle big HTML
 
 app.post('/generate-pdf', async (req, res) => {
   const { html } = req.body;
 
   try {
     const browser = await puppeteer.launch({
-    headless: 'new', 
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
-    
+
     const page = await browser.newPage();
+
+    // ✅ Force desktop viewport so Tailwind lg: styles apply
+    await page.setViewport({
+      width: 1280,
+      height: 1024,
+      deviceScaleFactor: 2,
+    });
+
     await page.setContent(html, { waitUntil: 'networkidle0' });
 
     const currentYear = new Date().getFullYear();
@@ -43,7 +49,7 @@ app.post('/generate-pdf', async (req, res) => {
       printBackground: true,
       margin: {
         top: '10mm',
-        bottom: '25mm', // make room for footer
+        bottom: '25mm', // space for footer
         left: '10mm',
         right: '10mm',
       },
@@ -54,7 +60,7 @@ app.post('/generate-pdf', async (req, res) => {
           </div>
         </div>
       `,
-      headerTemplate: '<div></div>', // Optional, can be empty if you don’t need a header
+      headerTemplate: '<div></div>',
     });
 
     await browser.close();
@@ -75,5 +81,4 @@ app.listen(PORT, () => {
   console.log(`PDF backend running at http://localhost:${PORT}`);
 });
 
-// In server new 
-console.log("server.js updated");
+console.log("server.js updated with desktop viewport");
