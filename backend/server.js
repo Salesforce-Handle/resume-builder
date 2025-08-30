@@ -33,13 +33,6 @@ app.post('/generate-pdf', async (req, res) => {
 
     const page = await browser.newPage();
 
-    // ✅ Force desktop viewport so Tailwind lg: styles apply
-    await page.setViewport({
-      width: 1280,
-      height: 1024,
-      deviceScaleFactor: 2,
-    });
-
     await page.setContent(html, { waitUntil: 'networkidle0' });
 
     const currentYear = new Date().getFullYear();
