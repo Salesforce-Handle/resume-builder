@@ -47,6 +47,7 @@ await page.setViewport({
   deviceScaleFactor: 2
 });
 
+await page.emulateMediaType('screen'); // prefer screen rules over print
 
     await page.setContent(html, { waitUntil: 'networkidle0' });
 
