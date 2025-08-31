@@ -7,7 +7,8 @@ const PORT = process.env.PORT || 3001;
 
 const allowedOrigins = [
   'https://resume.salesforcehandle.com',
-  'https://www.resume.salesforcehandle.com'
+  'https://www.resume.salesforcehandle.com',
+  'http://localhost:5173/'
 ];
 
 app.use(cors({
