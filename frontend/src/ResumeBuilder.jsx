@@ -165,9 +165,6 @@ export default function App() {
     // Clone so you don’t mess with live DOM
     const clonedPreview = preview.cloneNode(true);
     clonedPreview.style.boxSizing = "border-box";
-    clonedPreview.classList.remove("shadow-xl", "p-14");
-    
-    // COMMENTING : clonedPreview.classList.remove("w-full", "lg:w-4/5", "shadow-xl", "p-14");
     clonedPreview.classList.remove("w-full", "lg:w-4/5", "shadow-xl", "p-14");
 
     // Remove no-print items
@@ -346,7 +343,7 @@ export default function App() {
           currentTheme={currentTheme}
         />
 
-      <div id="resume-grid" className="grid grid-cols-1 md:grid-cols-8 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-8 gap-4">
 
       {/* Left Column */}
       <div id="left-sections" className="md:col-span-5 space-y-6">
@@ -387,47 +384,47 @@ export default function App() {
 
       </div>
 
-      {/* Right Column */}
-      <div id="right-sections" className="md:col-span-3 space-y-6">
-      
-      {/* Strengths */}
-      <StrengthSection
-        strengths={strengths}
-        setStrengths={setStrengths}
-        strengthtitle={formData.strengthtitle}
-        setStrengthtitle={(val) => setFormData({ ...formData, strengthtitle: val })}
-        strengthIcons={strengthIcons}
-        currentTheme={currentTheme}
-      />
+        {/* Right Column */}
+        <div id="right-sections" className="md:col-span-3 space-y-6">
+        
+        {/* Strengths */}
+        <StrengthSection
+          strengths={strengths}
+          setStrengths={setStrengths}
+          strengthtitle={formData.strengthtitle}
+          setStrengthtitle={(val) => setFormData({ ...formData, strengthtitle: val })}
+          strengthIcons={strengthIcons}
+          currentTheme={currentTheme}
+        />
 
-      {/* Skill */}
-      <SkillsSection
-        skills={skills}
-        setSkills={setSkills}
-        skillTitle={formData.skillTitle}
-        setSkillTitle={(val) => setFormData({ ...formData, skillTitle: val })}
-        currentTheme={currentTheme}
-      />
+        {/* Skill */}
+        <SkillsSection
+          skills={skills}
+          setSkills={setSkills}
+          skillTitle={formData.skillTitle}
+          setSkillTitle={(val) => setFormData({ ...formData, skillTitle: val })}
+          currentTheme={currentTheme}
+        />
 
-      {/* Certifications */}
-      <CertificationsSection
-        certifications={certifications}
-        setCertifications={setCertifications}
-        certTitle={formData.certTittle}
-        setCertTitle={(val) => setFormData({ ...formData, certTittle: val })}
-        currentTheme={currentTheme}
-      />
+        {/* Certifications */}
+        <CertificationsSection
+          certifications={certifications}
+          setCertifications={setCertifications}
+          certTitle={formData.certTittle}
+          setCertTitle={(val) => setFormData({ ...formData, certTittle: val })}
+          currentTheme={currentTheme}
+        />
 
 
-      {/* Languages */}
-      <LanguagesSection
-        languages={languages}
-        setLanguages={setLanguages}
-        langTitle={formData.langTittle}
-        setLangTitle={(val) => setFormData({ ...formData, langTittle: val })}
-        currentTheme={currentTheme}
-      />
-      </div>
+        {/* Languages */}
+        <LanguagesSection
+          languages={languages}
+          setLanguages={setLanguages}
+          langTitle={formData.langTittle}
+          setLangTitle={(val) => setFormData({ ...formData, langTittle: val })}
+          currentTheme={currentTheme}
+        />
+        </div>
 
       </div>
       </div>
