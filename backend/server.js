@@ -41,10 +41,10 @@ app.post('/generate-pdf', async (req, res) => {
       displayHeaderFooter: true,
       printBackground: true,
       margin: {
-        top: '10mm',
-        bottom: '25mm', // space for footer
-        left: '10mm',
-        right: '10mm',
+        top: '0mm',
+        bottom: '15mm', // space for footer
+        left: '0mm',
+        right: '0mm',
       },
       footerTemplate: `
         <div style="width: 100%; font-size: 10px; text-align: center; color: #666">

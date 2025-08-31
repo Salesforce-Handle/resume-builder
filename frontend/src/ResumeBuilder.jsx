@@ -159,7 +159,7 @@ export default function App() {
   // pdf generation 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   
-  const downloadPDF = async () => {
+/*  const downloadPDF = async () => {
     const preview = document.getElementById("resume-preview");
 
     // Clone so you don’t mess with live DOM
@@ -233,7 +233,95 @@ export default function App() {
       setIsGenerating(false);
       track("Resume Downloaded");
     }
-  }; 
+  }; */
+
+  const downloadPDF = async () => {
+  const preview = document.getElementById('resume-preview');
+  const clonedPreview = preview.cloneNode(true);
+
+  // Clean up clone
+  clonedPreview.style.boxSizing = 'border-box';
+  clonedPreview.classList.remove('w-full', 'lg:w-4/5', 'shadow-xl', 'p-14');
+  clonedPreview.querySelectorAll('.no-print').forEach((el) => el.remove());
+
+  // 🔒 Print CSS: always 2-col for PDF
+  const printCss = `
+    @page { size: A4; margin: 10mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    /* Make sure the preview itself has comfortable padding in PDF */
+    #resume-preview { width: 100%; padding: 10mm; box-sizing: border-box; }
+
+    /* Force desktop 2-column grid regardless of breakpoints */
+    #resume-grid {
+      display: grid !important;
+      grid-template-columns: 5fr 3fr !important;
+      column-gap: 16px !important;
+      row-gap: 16px !important;
+    }
+    #left-sections  { grid-column: 1 !important; }
+    #right-sections { grid-column: 2 !important; }
+
+    /* Avoid ugly page breaks inside cards/sections */
+    #left-sections  > *, 
+    #right-sections > * { break-inside: avoid; page-break-inside: avoid; }
+  `;
+
+  const fullHtml = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resume</title>
+    <!-- You can keep this for base utilities, but our printCss below dictates layout -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+      body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+      ${printCss}
+    </style>
+  </head>
+  <body>
+    ${clonedPreview.outerHTML}
+  </body>
+  </html>`;
+
+  try {
+    const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+    setQuote(randomQuote);
+    setIsGenerating(true);
+
+    const response = await fetch(`${backendUrl}/generate-pdf`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ html: fullHtml }),
+    });
+
+    if (!response.ok) throw new Error('Failed to generate PDF');
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'resume.pdf';
+    document.body.appendChild(link);
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    if (isIOS) {
+      window.open(url, '_blank');
+    } else {
+      link.click();
+    }
+
+    link.remove();
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error('PDF download failed:', err);
+  } finally {
+    setIsGenerating(false);
+    track('Resume Downloaded');
+  }
+};
 
 
   useEffect(() => {
