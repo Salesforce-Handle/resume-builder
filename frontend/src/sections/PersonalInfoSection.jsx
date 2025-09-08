@@ -1,19 +1,40 @@
-import React from "react";
 import EditableField from "../components/EditableField";
 import { Briefcase, MapPin, Mail, Phone, Linkedin } from "lucide-react";
+import FieldVisibilityControls from "../components/FieldVisibilityControls";
 
-export default function PersonalInfoSection({
-  formData,
-  setFormData,
-  currentTheme,
-}) {
+export default function PersonalInfoSection({ formData, setFormData, currentTheme }) {
+  const toggleField = (field) => {
+    setFormData((prev) => ({
+      ...prev,
+      visibility: {
+        ...prev.visibility,
+        [field]: !prev.visibility[field],
+      },
+    }));
+  };
+
+  const fieldLabels = {
+    title: "Role",
+    location: "Location",
+    email: "Email",
+    phone: "Phone",
+    linkedin: "LinkedIn",
+  };
+
   return (
     <div id="person-card" className="col-span-3 space-y-6">
-      <section>
+      <section className="relative group">
+        
+        {/* ✅ Reusable Controls */}
+        <FieldVisibilityControls
+          visibility={formData.visibility}
+          onToggle={toggleField}
+          fieldLabels={fieldLabels}
+        />
+
+        {/* Info Content */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-2 px-4 py-2">
-          
-          {/* Left Side: Info */}
-          <div className="text-center sm:text-left space-y-1 text-sm relative group rounded hover:shadow hover:border-2 hover:border-blue-200 transition-all">
+          <div className="text-center sm:text-left space-y-1 text-sm relative rounded hover:shadow hover:border-2 hover:border-blue-200 transition-all">
             
             {/* Name */}
             <EditableField
@@ -87,7 +108,6 @@ export default function PersonalInfoSection({
             </div>
           </div>
 
-          {/* Right Side: (reserved for future profile image) */}
           <div className="mt-4 sm:mt-0 no-print" />
         </div>
       </section>
