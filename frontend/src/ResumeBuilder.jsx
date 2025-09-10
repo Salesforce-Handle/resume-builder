@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";     
 import WelcomePopup from "./components/WelcomePopup";
 import { Trophy, Award, Gem, Star, Sparkles } from "lucide-react";
-import VisibilityToggleMenu from "./components/VisibilityToggleMenu";
 import '@fontsource/inter/index.css';
 import './index.css';
 import { useResumeStorage } from "./components/hooks/useResumeStorage";
@@ -289,21 +288,6 @@ export default function App() {
           ))}
         </select>
       </div>
-
-      {/* Visibility Toggle */}
-      <VisibilityToggleMenu
-        visibility={formData.visibility}
-        onToggle={(field) =>
-          setFormData((prev) => ({
-            ...prev,
-            visibility: {
-              ...prev.visibility,
-              [field]: !prev.visibility[field],
-            },
-          }))
-        }
-        fields={["title", "location", "email", "phone", "linkedin"]}
-      />
 
       {/* Support Buttons */}
       <div className="flex gap-2">
